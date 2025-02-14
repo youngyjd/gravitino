@@ -106,7 +106,7 @@ function addDirToClasspath(){
 }
 
 if [[ -z "${GRAVITINO_MEM}" ]]; then
-  export GRAVITINO_MEM="-Xmx1024m"
+  export GRAVITINO_MEM="-Xmx2048m"
 fi
 
 if [[ -n "${JAVA_HOME}" ]]; then
