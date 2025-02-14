@@ -13,7 +13,6 @@ The Apache Gravitino Iceberg REST Server follows the [Apache Iceberg REST API sp
 ### Capabilities
 
 - Supports the Apache Iceberg REST API defined in Iceberg 1.5, and supports all namespace and table interfaces. The following interfaces are not implemented yet:
-  - token
   - multi table transaction
   - pagination
 - Works as a catalog proxy, supporting `Hive` and `JDBC` as catalog backend.
@@ -243,7 +242,7 @@ You must download the corresponding JDBC driver to the `iceberg-rest-server/libs
 
 If you want to use a custom Iceberg Catalog as `catalog-backend`, you can add a corresponding jar file to the classpath and load a custom Iceberg Catalog implementation by specifying the `catalog-backend-impl` property.
 
-#### View support
+### View support
 
 You could access the view interface if using JDBC backend and enable `jdbc.schema-version` property.
 
@@ -251,7 +250,7 @@ You could access the view interface if using JDBC backend and enable `jdbc.schem
 |----------------------------------------------|--------------------------------------------------------------------------------------------|---------------|----------|------------------|
 | `gravitino.iceberg-rest.jdbc.schema-version` | The schema version of JDBC catalog backend, setting to `V1` if supporting view operations. | (none)        | NO       | 0.7.0-incubating |
 
-#### Multi catalog support
+### Multi catalog support
 
 The Gravitino Iceberg REST server supports multiple catalogs, and you could manage the catalog by different ways.
 
@@ -259,7 +258,7 @@ The Gravitino Iceberg REST server supports multiple catalogs, and you could mana
 |--------------------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|--------------------------|----------|------------------|
 | `gravitino.iceberg-rest.catalog-config-provider` | The className of catalog configuration provider, Gravitino provides build-in `static-config-provider` and `dynamic-config-provider`, you could also develop a custom class that implements `apache.gravitino.iceberg.service.provider.IcebergConfigProvider` and add the corresponding jar file to the Iceberg REST service classpath directory. | `static-config-provider` | No       | 0.7.0-incubating |
 
-##### Static catalog configuration provider
+#### Static catalog configuration provider
 
 The static catalog configuration provider retrieves the catalog configuration from the configuration file of the Gravitino Iceberg REST server. You could configure the default catalog with `gravitino.iceberg-rest.<param name>=<value>`. For specific catalogs, use the format `gravitino.iceberg-rest.catalog.<catalog name>.<param name>=<value>`.
 
@@ -298,7 +297,7 @@ You can access different catalogs by setting the `prefix` to the specific catalo
 ...
 ```
 
-##### Dynamic catalog configuration provider
+#### Dynamic catalog configuration provider
 
 The dynamic catalog configuration provider retrieves the catalog configuration from the Gravitino server.
 
@@ -317,7 +316,7 @@ gravitino.iceberg-rest.gravitino-metalake = test
 
 ### Other Apache Iceberg catalog properties
 
-You can add other properties defined in [Iceberg catalog properties](https://iceberg.apache.org/docs/1.5.2/configuration/#catalog-properties).
+You can add other properties defined in [Iceberg catalog properties](https://iceberg.apache.org/docs/1.6.1/configuration/#catalog-properties).
 The `clients` property for example:
 
 | Configuration item               | Description                          | Default value | Required |
@@ -379,7 +378,7 @@ Normally you will see the output like `{"defaults":{},"overrides":{}}%`.
 
 ### Deploying Apache Spark with Apache Iceberg support
 
-Follow the [Spark Iceberg start guide](https://iceberg.apache.org/docs/1.5.2/spark-getting-started/) to set up Apache Spark's and Apache Iceberg's environment.
+Follow the [Spark Iceberg start guide](https://iceberg.apache.org/docs/1.6.1/spark-getting-started/) to set up Apache Spark's and Apache Iceberg's environment.
 
 ### Starting the Apache Spark client with the Apache Iceberg REST catalog
 
