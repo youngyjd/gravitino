@@ -16,11 +16,31 @@
  * specific language governing permissions and limitations
  * under the License.
  */
+package org.apache.gravitino.listener.api.event;
 
-package org.apache.gravitino.catalog.hadoop;
+import org.apache.gravitino.NameIdentifier;
+import org.apache.gravitino.annotation.DeveloperApi;
 
-public class Constants {
+/** Represents an event triggered before listing tags info. */
+@DeveloperApi
+public class ListTagsInfoPreEvent extends TagPreEvent {
+  /**
+   * Constructs a new {@code ListTagsInfoPreEvent} instance.
+   *
+   * @param user The user who initiated the tag listing operation.
+   * @param metalake The metalake name where the tags are being listed.
+   */
+  public ListTagsInfoPreEvent(String user, String metalake) {
+    super(user, NameIdentifier.of(metalake));
+  }
 
-  public static final String BUILTIN_LOCAL_FS_PROVIDER = "builtin-local";
-  public static final String BUILTIN_HDFS_FS_PROVIDER = "builtin-hdfs";
+  /**
+   * Returns the type of operation.
+   *
+   * @return the operation type.
+   */
+  @Override
+  public OperationType operationType() {
+    return OperationType.LIST_TAGS_INFO;
+  }
 }
